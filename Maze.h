@@ -9,11 +9,12 @@ using namespace std;
 class Maze
 {
  public:
-  Maze(int newWidth,int newHeight);
+  Maze(int newWidth,int newHeight, int newDifficulty);
   string Display();
+  char** Output();
   
  private:
-  int width, height;
+  int width, height, difficulty;
   char **map;
 };
 
