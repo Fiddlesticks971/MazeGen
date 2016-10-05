@@ -7,26 +7,50 @@ Runner::Runner(char** newMap, int newHeight, int newWidth)
   width = newWidth;
 }
 
-bool Runner::Run(int X,int Y)
+bool Runner::Run1(int X,int Y)
 {
-  map[X][Y]='.';
-  if (map[X+1][Y] == '$')
+
+  if (map[X][Y] == '$')
     return true;
-  if(map[X+1][Y] != '#')
-    if(Run(X+1,Y))
+  map[X][Y]='.';
+  
+  if(map[X+1][Y] != '#' && map[X+1][Y] != '.' && map[X+1][Y] != 'x')
+    if(Run1(X+1,Y))
       return true;
-  if(map[X][Y+1] != '#')
-    if(Run(X,Y+1))
+  if(map[X][Y+1] != '#' && map[X][Y+1] != '.' && map[X][Y+1] != 'x')
+    if(Run1(X,Y+1))
       return true;
-  if(map[X-1][Y] != '#')
-    if(Run(X-1,Y))
+  if(map[X-1][Y] != '#' && map[X-1][Y] != '.' && map[X-1][Y] != 'x')
+    if(Run1(X-1,Y))
       return true;
-  if(map[X][Y-1] != '#')
-    if(Run(X,Y-1))
+  if(map[X][Y-1] != '#' && map[X][Y-1] != '.' && map[X][Y-1] != 'x' )
+    if(Run1(X,Y-1))
       return true;
+  map[X][Y]='x';
   return false;
 }
+bool Runner::Run2(int X,int Y)
+{
 
+  if (map[X][Y] == '$')
+    return true;
+  map[X][Y]='*';
+  
+  if(map[X][Y+1] != '#' && map[X][Y+1] != '*' && map[X][Y+1] != 'x')
+    if(Run2(X,Y+1))
+      return true;
+  if(map[X+1][Y] != '#' && map[X+1][Y] != '*' && map[X+1][Y] != 'x')
+    if(Run2(X+1,Y))
+      return true;
+  if(map[X][Y-1] != '#' && map[X][Y-1] != '*' && map[X][Y-1] != 'x')
+    if(Run2(X,Y-1))
+      return true;
+  if(map[X-1][Y] != '#' && map[X-1][Y] != '*' && map[X-1][Y] != 'x' )
+    if(Run2(X-1,Y))
+      return true;
+  map[X][Y]='x';
+  return false;
+}
 string Runner::Result()
 {
   string output="";

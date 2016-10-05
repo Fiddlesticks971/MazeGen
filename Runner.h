@@ -7,7 +7,8 @@ class Runner
 {
  public:
   Runner(char** newMap ,int newHeight,int newWidth);
-  bool Run(int X, int Y);
+  bool Run1(int X, int Y);
+  bool Run2(int X, int Y);
   string Result();
  private:
   char** map;

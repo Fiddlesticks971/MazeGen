@@ -52,7 +52,8 @@ int main(int argc, char *argv[])
   Maze DisplayMaze(width,height,difficulty);
   cout << DisplayMaze.Display()<<endl;
   Runner newRunner(DisplayMaze.Output(),height,width);
-  newRunner.Run(1,0);
+  newRunner.Run1(1,0);
+  newRunner.Run2(1,0);
   cout << newRunner.Result();
   return 0;
 }
